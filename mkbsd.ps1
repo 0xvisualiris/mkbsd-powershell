@@ -1,4 +1,4 @@
-﻿# Licensed under the WTFPL License
+# Licensed under the WTFPL License
 
 $url = 'https://storage.googleapis.com/panels-api/data/20240916/media-1a-i-p~s'
 
@@ -15,6 +15,7 @@ function Download-Image {
     if (Test-Path $filePath) {
         Write-Host "⏭️ File already exists: $filePath. Skipping download."
         return
+    }
     try {
         Invoke-WebRequest -Uri $imageUrl -OutFile $filePath
         Write-Host "🖼️ Saved image to $filePath"
@@ -31,10 +32,12 @@ function Main {
             throw "⛔ JSON does not have a 'data' property at its root."
         }
 
-        $downloadDir = Join-Path $PWD "downloads"
+        $downloadDir = Join-Path -Path $PWD.Path -ChildPath "MKBSD"
         if (-not (Test-Path $downloadDir)) {
             New-Item -ItemType Directory -Path $downloadDir | Out-Null
             Write-Host "📁 Created directory: $downloadDir"
+        } else {
+            Write-Host "📁 Using existing directory: $downloadDir"
         }
 
         $fileIndex = 1
@@ -47,7 +50,7 @@ function Main {
                 $ext = [System.IO.Path]::GetExtension($parsedUrl.AbsolutePath)
                 if (-not $ext) { $ext = ".jpg" }
                 $filename = "$fileIndex$ext"
-                $filePath = Join-Path $downloadDir $filename
+                $filePath = Join-Path -Path $downloadDir -ChildPath $filename
                 Download-Image -imageUrl $imageUrl -filePath $filePath
                 $fileIndex++
                 Delay-Milliseconds -milliseconds 250
