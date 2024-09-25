@@ -12,6 +12,9 @@ function Download-Image {
         [string]$imageUrl,
         [string]$filePath
     )
+    if (Test-Path $filePath) {
+        Write-Host "⏭️ File already exists: $filePath. Skipping download."
+        return
     try {
         Invoke-WebRequest -Uri $imageUrl -OutFile $filePath
         Write-Host "🖼️ Saved image to $filePath"
