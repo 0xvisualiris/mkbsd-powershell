@@ -17,12 +17,12 @@ _Because selling out is bad_
 
 ## How to use
 
-Download the "ps.1" Script.
-Open "Terminal" on your Windows machine or PowerShell.
-Run the command "Set-ExecutionPolicy RemoteSigned" and confirm with "A" or "Y".
-Navigate to your folder where the scrip is. For example "cd C:\Users\Admin\Downloads\"
-Then type into your session ".\mkbsd.ps1" and press enter.
-This will create a folder called MKBSD and download all the wallpapers.
+1. Download the "ps.1" Script.
+2. Open "Terminal" on your Windows machine or PowerShell.
+3. Run the command "Set-ExecutionPolicy RemoteSigned" and confirm with "A" or "Y".
+4. Navigate to your folder where the scrip is. For example "cd C:\Users\Admin\Downloads\"
+5. Then type into your session ".\mkbsd.ps1" and press enter.
+6. This will create a folder called MKBSD and download all the wallpapers.
 
 Cheers!
 
